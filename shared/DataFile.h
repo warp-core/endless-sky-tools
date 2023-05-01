@@ -7,7 +7,10 @@ Foundation, either version 3 of the License, or (at your option) any later versi
 
 Endless Sky is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-PARTICULAR PURPOSE.  See the GNU General Public License for more details.
+PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with
+this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 #ifndef DATA_FILE_H_
@@ -17,6 +20,7 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 
 #include <istream>
 #include <list>
+#include <string>
 
 
 
@@ -28,22 +32,25 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 // strings or as floating point values; see DataNode for more information.
 class DataFile {
 public:
+	// A DataFile can be loaded either from a file path or an istream.
 	DataFile() = default;
-	DataFile(const std::string &path);
-	DataFile(std::istream &in);
-	
+	explicit DataFile(const std::string &path);
+	explicit DataFile(std::istream &in);
+
 	void Load(const std::string &path);
 	void Load(std::istream &in);
-	
+
+	// Functions for iterating through all DataNodes in this file.
 	std::list<DataNode>::const_iterator begin() const;
 	std::list<DataNode>::const_iterator end() const;
-	
-	
+
+
 private:
-	void Load(const char *it, const char *end);
-	
-	
+	void LoadData(const std::string &data);
+
+
 private:
+	// This is the container for all DataNodes in this file.
 	DataNode root;
 };
 
