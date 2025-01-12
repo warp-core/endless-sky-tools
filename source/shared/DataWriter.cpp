@@ -21,6 +21,7 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 #include <windows.h>
 #endif
 
+#include <algorithm>
 #include <cstdlib>
 
 using namespace std;
