@@ -32,7 +32,7 @@ class DataWriter {
 public:
 	DataWriter();
 
-	string ToString() const;
+	std::string ToString() const;
 
 	template <class A, class ...B>
 	void Write(const A &a, B... others);
