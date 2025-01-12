@@ -64,7 +64,7 @@ double Value(const string &line, int index)
 	return value;
 }
 
-double MapColor(double value, double *r, double *g, double *b)
+void MapColor(double value, double *r, double *g, double *b)
 {
 	value = min(1., max(-1., value));
 	if(value < 0.)
