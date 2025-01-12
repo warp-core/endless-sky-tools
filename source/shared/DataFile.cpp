@@ -24,6 +24,23 @@ this program. If not, see <https://www.gnu.org/licenses/>.
 
 using namespace std;
 
+namespace {
+	wstring ToUTF16(const string &input)
+	{
+		const auto page = CP_UTF8;
+		wstring result;
+		if(input.empty())
+			return result;
+
+		bool endsInSlash = (input.back() == '/' || input.back() == '\\');
+		int size = MultiByteToWideChar(page, 0, &input[0], input.length() - endsInSlash, nullptr, 0);
+		result.resize(size);
+		MultiByteToWideChar(page, 0, &input[0], input.length() - endsInSlash, &result[0], size);
+
+		return result;
+	}
+}
+
 
 
 DataFile::DataFile(const string &path)
